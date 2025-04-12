@@ -1,0 +1,52 @@
+import java.util.Scanner;
+public class Menu{
+public static boolean isPrime(int num) {
+    if (num <= 1) return false;
+    for (int i = 2; i<= num/2; i++) {
+         if (num % i == 0) {
+             return false;
+           }
+        }
+        return true;
+    }
+public static void sumOf() {
+    int sum = 0;
+    for (int num = 2; num <= 100; num++) {
+        if(isPrime(num)) {
+             sum += num;
+          }
+        }
+        System.out.println("Sum of all prime numbers between 1 and 100 is: " + sum);
+    }
+public static boolean isAutomorphic(int num) {
+     int square = num * num;
+     String numStr = String.valueOf(num);
+     String squareStr = String.valueOf(square);
+     return squareStr.endsWith(numStr); 
+    }
+public static void main(String[] args) {
+     Scanner sc = new Scanner(System.in);
+     int choice;
+     System.out.println("\nMenu:");
+     System.out.println("1. Calculate and print the sum of all the prime numbers between 1 and 100");
+     System.out.println("2. Input a number and check whether it is an Automorphic number");
+     System.out.println("3. Exit");
+     System.out.print("Enter your choice (1/2/3): ");
+     choice = sc.nextInt();
+     switch (choice) {
+          case 1 -> sumOf();
+          case 2 -> {
+             System.out.print("Enter a number to check if it is Automorphic: ");
+             int num = sc.nextInt();
+             if (isAutomorphic(num)) {
+                 System.out.println(num + " is an Automorphic number.");
+             } else {
+                 System.out.println(num + " is not an Automorphic number.");
+             }
+          }
+          case 3 -> System.out.println("Exiting the program.");
+          default -> System.out.println("Invalid choice, please try again.");
+     }
+        sc.close();
+    }
+}
