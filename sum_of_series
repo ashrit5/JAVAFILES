@@ -1,0 +1,49 @@
+import java.util.*;
+
+public class Series {
+    double x;
+    int n;
+
+    Series(double x1, int n1) {
+        x = x1;
+        n = n1;
+    }
+
+    void printSum() {
+        int i;
+        double term, sum = 0;
+        for (i = 1; i <= n; i++) {
+            term = Math.pow(x, i) / factorial(i + 1);  
+            if (i % 2 == 0) {
+                sum -= term;  
+            } else {
+                sum += term;  
+            }
+        }
+
+        System.out.println("Sum of series = " + sum);
+    }
+
+    int factorial(int num) {
+        int fact = 1;
+        for (int i = 1; i <= num; i++) {
+            fact = fact * i;
+        }
+        return fact;
+    }
+
+    public static void main(String args[]) {
+        Scanner sc= new Scanner(System.in);
+
+        System.out.print("Enter the value of x: ");
+        double x = sc.nextDouble();
+
+        System.out.print("Enter the number of terms (n): ");
+        int n = sc.nextInt();
+        
+        Series series1 = new Series(x, n);
+        series1.printSum();
+
+         sc.close();
+    }
+}
