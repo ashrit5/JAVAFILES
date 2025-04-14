@@ -1,0 +1,59 @@
+import java.util.Random;
+import java.util.Scanner;
+
+class Game1 {
+    private int noofGuesses = 0;
+    public int inputno;
+    private int Rando;
+    private Scanner a1;
+
+    public Game1() {
+        Random rand = new Random();
+        int upperbound = 100;
+        Rando = rand.nextInt(upperbound) + 1; // Random number between 1–100
+        a1 = new Scanner(System.in);
+    }
+
+    public void TakeUserinput() {
+        System.out.print("Guess a number (1-100): ");
+        inputno = a1.nextInt();
+    }
+
+    public void SetnoofGuesses(int Guesses) {
+        this.noofGuesses = Guesses;
+    }
+
+    public int GetnoofGuesses() {
+        return noofGuesses;
+    }
+
+    boolean NoofCorrectGuesses() {
+        noofGuesses++;
+        if (inputno == Rando) {
+            System.out.printf("🎉 You guessed the number right: %d\n", Rando);
+            System.out.printf("You guessed it in %d attempts\n", noofGuesses);
+            return true;
+        } else if (inputno > Rando) {
+            System.out.println("📉 Your guess is too high.");
+        } else {
+            System.out.println("📈 Your guess is too low.");
+        }
+        return false;
+    }
+
+    public void closeScanner() {
+        a1.close();
+    }
+}
+
+public class Main{
+    public static void main(String[] args) {
+        Game1 gaming = new Game1();
+        boolean guessed = false;
+        while (!guessed) {
+            gaming.TakeUserinput();
+            guessed = gaming.NoofCorrectGuesses();
+        }
+        gaming.closeScanner();
+    }
+}
